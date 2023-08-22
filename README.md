@@ -1,73 +1,53 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+### このリポジトリについて
+Udemy講座「NestJS + Next.js によるフルスタックWeb開発」
+バックエンドAPI側のリポジトリです。
+Nest.js＋Nest.jsのキャッチアップのため学習します。
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
+### Create new NestJS project
 ```bash
-$ yarn install
+$ npm i -g @nestjs/cli
+$ npm i -g yarn
+
+$ nest new api-lesson
+# set strict true in tsconfig.json
 ```
-
-## Running the app
-
+### Install packages
 ```bash
-# development
-$ yarn run start
+# install prisma
+$ yarn add -D prisma
+$ yarn add @prisma/client
+$ npx prisma init
 
-# watch mode
-$ yarn run start:dev
+# add docker-compose.yml file
+# start db
+$ docker compose up -d
+# reset db
+$ docker compose rm -s -f -v
 
-# production mode
-$ yarn run start:prod
+# edit DATABASE_URL of .env
+# add model definition to schema file
+
+# prisma migrate and type generation
+$ npx prisma migrate dev
+$ npx prisma studio
+$ npx prisma generate
+
+# install packages
+$ yarn add @nestjs/config @nestjs/jwt @nestjs/passport
+$ yarn add cookie-parser csurf passport passport-jwt bcrypt class-validator
+$ yarn add -D @types/express @types/cookie-parser @types/csurf @types/passport-jwt @types/bcrypt
 ```
-
-## Test
-
+### Create module, controller, service
 ```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+$ nest g module auth
+$ nest g module user
+$ nest g module todo
+$ nest g module prisma
+$ nest g controller auth --no-spec
+$ nest g controller user --no-spec
+$ nest g controller todo --no-spec
+$ nest g service auth --no-spec
+$ nest g service user --no-spec
+$ nest g service todo --no-spec
+$ nest g service prisma --no-spec
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
